@@ -203,9 +203,7 @@
   (by-destruct n #:as [() (n-1)])
   ; destruct 2a
   ; simpl
-  (by-inversion H)
-  elim-False
-  by-assumption
+  (by-discriminate H)
   ; destruct 2b
   (by-inversion H #:as H1)
   (by-apply eq-remove-S)
