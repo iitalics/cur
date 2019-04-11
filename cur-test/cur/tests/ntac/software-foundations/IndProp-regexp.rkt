@@ -36,3 +36,30 @@
             : (ExpMatch Nat
                         (build-list Nat 5 5)
                         (star (char 5))))
+
+(check-type
+ (λ [Σ : Type] [a : Σ]
+    (m-star-app Σ (build-list Σ a) (nil Σ)
+                (char a)
+                (m-char Σ a)
+                (m-star0 Σ (char a))))
+ : (∀ [Σ : Type] [a : Σ]
+    (ExpMatch Σ
+              (build-list Σ a)
+              (star (char a)))))
+
+;(define-theorem a~=star-a
+(ntac/trace
+ (∀ [Σ : Type] [a : Σ]
+    (ExpMatch Σ
+              (build-list Σ a)
+              (star (char a))))
+ ;; proof:
+ (by-intros Σ a)
+ (by-apply m-star-app
+           ; COULD NOT INFER INSTANTIATION
+           #:with-var
+           [s1 (build-list Σ a)]
+           [s2 (nil Σ)]
+           [r (char* Σ a)])
+ )
