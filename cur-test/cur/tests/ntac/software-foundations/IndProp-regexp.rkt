@@ -42,8 +42,13 @@
            (build-list Nat 1 2)
            (app (char 1) (char 2)))
  ; Proof:
- (by-apply m-app #:with-var
-           [T Nat]
-           [s1 (cons Nat 1 (nil Nat))]
-           [s2 (cons Nat 2 (nil Nat))])
+ (by-apply m-app #:with
+           Nat
+           (cons Nat 1 (nil Nat))
+           (cons Nat 2 (nil Nat))
+           (char* Nat 1)
+           (char* Nat 2)
+           (m-char Nat 1)
+           (m-char Nat 2)
+           )
  )
